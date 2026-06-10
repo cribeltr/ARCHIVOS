@@ -41,36 +41,22 @@
   .hint { font-size: 12px; margin: 8px 0 0; opacity: .92; }
   .grupo { display: flex; gap: 6px; align-items: center; background: rgba(255,255,255,.14); padding: 5px 9px; border-radius: 6px; }
 
-  /* ---------- Hoja A4 ---------- */
+  /* ---------- Hoja A4 (geometría medida del PDF original) ---------- */
   #pages { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 18px 8px 40px; }
   .sheet {
     width: 210mm; min-height: 296mm;
-    padding: 9mm 8mm;
+    padding: 23.6mm 3.3mm 0 10.2mm;
     background: #fff;
     box-shadow: 0 3px 14px rgba(0,0,0,.45);
     color: #000;
   }
 
-  /* Encabezado con logos */
-  .enc {
-    border: 2.2px solid #000;
-    border-bottom: none;
-    display: flex; align-items: center;
-    height: 15mm; padding: 1mm 2mm;
-  }
-  .enc img.gob  { height: 11.5mm; }
-  .enc img.hosp { height: 10.5mm; }
-  .enc .tit { flex: 1; text-align: center; line-height: 1.25; }
-  .enc .tit .l1 { font-weight: 700; font-size: 11.5pt; }
-  .enc .tit .l2 { font-weight: 700; font-size: 10.5pt; }
-
-  /* Tabla del formulario */
-  table.rep { width: 100%; border-collapse: collapse; table-layout: fixed; margin-top: 0; }
+  table.rep { width: 196.5mm; border-collapse: collapse; table-layout: fixed; border: 0.6mm solid #000; }
   table.rep td {
-    border: 0.9px solid #000;
-    padding: 0.3mm 0.8mm;
-    font-size: 8.6pt;
-    line-height: 1.12;
+    border: 0.3mm solid #000;
+    padding: 0 0.4mm;
+    font-size: 8.9pt;
+    line-height: 3.6mm;
     vertical-align: middle;
     overflow: hidden;
     word-wrap: break-word;
@@ -78,29 +64,42 @@
   .b { font-weight: 700; }
   .c { text-align: center; }
   .nw { white-space: nowrap; }
-  tr.r-title td { height: 4.7mm; }
-  tr.r-tipo  td { height: 8mm; }
-  tr.r-dato  td { height: 4.5mm; }
-  tr.r-band  td { height: 5.1mm; }
-  tr.r-head  td { height: 4.5mm; }
-  tr.r-item  td { height: 4.4mm; }
-  tr.r-ef    td { height: 5.5mm; }
-  tr.r-firma td { height: 24mm; }
-  table.rep td.carpeta { font-size: 13pt; font-weight: 700; text-align: center; }
-  table.rep td.nota { font-size: 7.8pt; font-weight: 700; text-align: center; line-height: 1.15; }
+  /* bordes gruesos (0.6mm como el original) */
+  table.rep td.T { border-top-width: 0.6mm; }
+  table.rep td.B { border-bottom-width: 0.6mm; }
+  table.rep td.L { border-left-width: 0.6mm; }
+  table.rep td.R { border-right-width: 0.6mm; }
+  /* alturas de fila medidas */
+  tr.r-hdr   td { height: 23.56mm; }
+  tr.r-tit1  td { height: 4.87mm; }
+  tr.r-tit2  td { height: 4.71mm; }
+  tr.r-tipo  td { height: 7.81mm; }
+  tr.r-dato  td { height: 4.33mm; }
+  tr.r-band  td { height: 4.3mm; }
+  tr.r-head  td { height: 4.35mm; }
+  tr.r-item  td { height: 4.32mm; }
+  tr.r-ef    td { height: 4.52mm; }
+  tr.r-firma td { height: 27.56mm; }
+  table.rep td.ml { line-height: 4.1mm; }
+  /* encabezado con logos (fila 1 de la planilla) */
+  table.rep td.hcell { vertical-align: top; padding: 0; }
+  td.hcell img.gob  { display: block; width: 20mm;   height: 21.8mm; margin: 1.3mm 0 0 1.3mm; }
+  td.hcell img.hosp { display: block; width: 43.2mm; height: 21.1mm; margin: 1.6mm 0 0 3.8mm; }
+  td.hcell .tit { padding-top: 3.2mm; text-align: center; font-weight: 700; font-size: 10.7pt; line-height: 4.9mm; }
+  /* tipografías especiales */
+  table.rep td.lab { font-weight: 700; text-align: right; padding-right: 0.6mm; white-space: nowrap; }
+  table.rep td.val { text-align: left; }
+  table.rep td.carpeta { font-size: 12.5pt; font-weight: 700; text-align: center; }
+  table.rep td.banda1 { font-size: 9.8pt; font-weight: 700; text-align: center; }
+  table.rep td.banda2 { font-size: 8.9pt; font-weight: 700; text-align: center; }
+  table.rep td.nota { font-size: 8.9pt; font-weight: 700; text-align: center; vertical-align: bottom; padding-bottom: 0.3mm; }
   table.rep td.chk { text-align: center; font-weight: 700; cursor: pointer; }
   table.rep td.chk:hover { background: #eef4fb; }
-  td.obs[contenteditable], td.val[contenteditable] { cursor: text; }
-  table.rep td.firma { vertical-align: bottom; text-align: center; font-size: 8.6pt; line-height: 1.2; padding-bottom: 1.2mm; }
-  /* bordes medios en separadores principales */
-  table.rep td.bt { border-top-width: 1.8px; }
-  table.rep td.bb { border-bottom-width: 1.8px; }
-  table.rep td.bl { border-left-width: 1.8px; }
-  table.rep td.br { border-right-width: 1.8px; }
-  table.rep { border: 2.2px solid #000; }
-  table.rep tr.r-firma td { border-bottom-width: 2.2px; }
-  /* líneas de observación junto a estado final */
-  table.rep td.linea { border-top-width: 0.7px; }
+  td.obs[contenteditable], td.val[contenteditable], td.linea[contenteditable] { cursor: text; }
+  table.rep td.firma {
+    vertical-align: bottom; text-align: center;
+    font-size: 8.9pt; line-height: 4.1mm; padding-bottom: 0.6mm;
+  }
 
   /* ---------- Impresión ---------- */
   @page { size: A4 portrait; margin: 0; }
@@ -108,9 +107,9 @@
     body { background: #fff; }
     .toolbar { display: none !important; }
     #pages { padding: 0; gap: 0; display: block; }
-    .sheet { box-shadow: none; margin: 0; page-break-after: always; min-height: auto; height: 296mm; }
+    .sheet { box-shadow: none; margin: 0; page-break-after: always; min-height: auto; height: 296.5mm; }
     .sheet:last-child { page-break-after: auto; }
-    td.chk:hover { background: transparent; }
+    table.rep td.chk:hover { background: transparent; }
   }
 </style>
 </head>
@@ -159,21 +158,21 @@ const fmtFecha = v => { if (!v) return ''; const [y,m,d] = v.split('-'); return 
 function filaItem(texto) {
   return `<tr class="r-item">
     <td colspan="3">${texto}</td>
-    <td class="chk"></td><td class="chk"></td><td class="chk br"></td>
+    <td class="chk"></td><td class="chk"></td><td class="chk"></td>
     <td class="obs" colspan="4" contenteditable="true"></td>
   </tr>`;
 }
 function filaSeccion(nombre) {
   return `<tr class="r-item">
-    <td colspan="3" class="b bt">${nombre}</td>
-    <td class="c bt">Pasa</td><td class="c bt">Falla</td><td class="c bt br">N/A</td>
-    <td class="obs bt" colspan="4" contenteditable="true"></td>
+    <td colspan="3" class="b">${nombre}</td>
+    <td class="c">Pasa</td><td class="c">Falla</td><td class="c">N/A</td>
+    <td class="obs" colspan="4" contenteditable="true"></td>
   </tr>`;
 }
 function filaActividad(texto) {
   return `<tr class="r-item">
     <td colspan="3">${texto}</td>
-    <td class="chk" colspan="2"></td><td class="chk br"></td>
+    <td class="chk" colspan="2"></td><td class="chk"></td>
     <td class="obs" colspan="4" contenteditable="true"></td>
   </tr>`;
 }
@@ -182,58 +181,57 @@ function sheetHTML(rec, fecha) {
   const r = rec || {carpeta:'', inventario:'', equipo:'', servicio:'', marca:'', modelo:'', serie:''};
   return `
 <section class="sheet">
-  <div class="enc">
-    <img class="gob" src="${LOGO_GOB}" alt="Gobierno de Chile">
-    <div class="tit">
-      <div class="l1">HOSPITAL DOCTOR HERNAN HENRIQUEZ ARAVENA</div>
-      <div class="l2">Subdepartamento Equipamiento Clínico</div>
-    </div>
-    <img class="hosp" src="${LOGO_HOSP}" alt="Hospital Doctor Hernán Henríquez Aravena">
-  </div>
   <table class="rep">
     <colgroup>
-      <col style="width:12.14%"><col style="width:6.07%"><col style="width:28.42%">
-      <col style="width:5.16%"><col style="width:5.43%"><col style="width:5.30%">
-      <col style="width:11.63%"><col style="width:11.24%"><col style="width:4.78%"><col style="width:9.82%">
+      <col style="width:23.2mm"><col style="width:11.3mm"><col style="width:55.1mm">
+      <col style="width:9.7mm"><col style="width:10.6mm"><col style="width:10.2mm">
+      <col style="width:22.2mm"><col style="width:21.6mm"><col style="width:9.2mm"><col style="width:18.6mm">
     </colgroup>
-    <tr class="r-title">
-      <td colspan="7" class="b c bt br">REPORTE TECNICO</td>
-      <td colspan="2" rowspan="2" class="c bt nw" style="font-size:9.5pt">Carpeta N°</td>
-      <td rowspan="2" class="carpeta bt bl">${esc(r.carpeta)}</td>
+    <tr class="r-hdr">
+      <td class="hcell B R"><img class="gob" src="${LOGO_GOB}" alt="Gobierno de Chile"></td>
+      <td class="hcell B" colspan="6">
+        <div class="tit">HOSPITAL DOCTOR HERNAN HENRIQUEZ ARAVENA<br>Subdepartamento Equipamiento Clínico</div>
+      </td>
+      <td class="hcell B L" colspan="3"><img class="hosp" src="${LOGO_HOSP}" alt="Hospital Doctor Hernán Henríquez Aravena"></td>
     </tr>
-    <tr class="r-title">
-      <td colspan="7" class="b c br bb">MANTENCION VENTILADORES MECANICOS</td>
+    <tr class="r-tit1">
+      <td colspan="7" class="b c T B">REPORTE TECNICO</td>
+      <td colspan="2" rowspan="2" class="b T B L" style="text-align:right;padding-right:0">Carpeta N°</td>
+      <td rowspan="2" class="carpeta T B L">${esc(r.carpeta)}</td>
+    </tr>
+    <tr class="r-tit2">
+      <td colspan="7" class="b c B">MANTENCION VENTILADORES MECANICOS</td>
     </tr>
     <tr class="r-tipo">
-      <td colspan="2" class="b bt bb nw" style="font-size:8.2pt">TIPO DE MANTENCION:</td>
-      <td colspan="2" class="b c bt bb">PREVENTIVA</td>
-      <td colspan="6" class="nota bt bb bl">Si no corresponde por tipo de equipo, se debe indicar N/A (no aplica)</td>
+      <td colspan="2" class="lab">TIPO DE MANTENCION:</td>
+      <td colspan="2" class="b c">PREVENTIVA</td>
+      <td colspan="6" class="nota">Si no corresponde por tipo de equipo, se debe indicar N/A (no aplica)</td>
     </tr>
     <tr class="r-dato">
-      <td class="b nw">Servicio:</td>
+      <td class="lab">Servicio:</td>
       <td colspan="6" class="val nw">${esc(r.servicio)}</td>
-      <td class="b bl nw" style="font-size:8pt">Nº Serie:</td>
-      <td colspan="2" class="val nw" style="font-size:8pt">${esc(r.serie)}</td>
+      <td class="lab">Nº Serie:</td>
+      <td colspan="2" class="val nw">${esc(r.serie)}</td>
     </tr>
     <tr class="r-dato">
-      <td class="b nw">Equipo:</td>
+      <td class="lab">Equipo:</td>
       <td colspan="6" class="val nw">${esc(r.equipo)}</td>
-      <td class="b bl nw" style="font-size:8pt">Nº Inventario:</td>
-      <td colspan="2" class="val nw" style="font-size:8pt">${esc(r.inventario)}</td>
+      <td class="lab">Nº Inventario:</td>
+      <td colspan="2" class="val nw">${esc(r.inventario)}</td>
     </tr>
     <tr class="r-dato">
-      <td class="b bb nw">Marca:</td>
-      <td colspan="2" class="val bb nw">${esc(r.marca)}</td>
-      <td colspan="2" class="b bb bl nw">Modelo:</td>
-      <td colspan="2" class="val bb nw">${esc(r.modelo)}</td>
-      <td class="b bb bl nw">Fecha:</td>
-      <td colspan="2" class="val bb" contenteditable="true">${esc(fecha)}</td>
+      <td class="lab">Marca:</td>
+      <td colspan="2" class="val nw">${esc(r.marca)}</td>
+      <td colspan="2" class="lab">Modelo:</td>
+      <td colspan="2" class="val nw">${esc(r.modelo)}</td>
+      <td class="lab">Fecha:</td>
+      <td colspan="2" class="val" contenteditable="true">${esc(fecha)}</td>
     </tr>
-    <tr class="r-band"><td colspan="10" class="b c bb">Lista de chequeo</td></tr>
+    <tr class="r-band"><td colspan="10" class="banda1 T B">Lista de chequeo</td></tr>
     <tr class="r-head">
       <td colspan="3" class="b c">Items:</td>
-      <td colspan="3" class="b c br">Estado</td>
-      <td colspan="4" class="b c">OBSERVACIONES</td>
+      <td colspan="3" class="c">Estado</td>
+      <td colspan="4" class="c">OBSERVACIONES</td>
     </tr>
     ${filaSeccion('Calibraciones')}
     ${filaItem('Parámetros biomédicos: presión, flujo y volumen')}
@@ -245,12 +243,12 @@ function sheetHTML(rec, fecha) {
     ${filaItem('Verificar hermeticidad interna del equipo')}
     ${filaSeccion('Pruebas de funcionalidad óptimas')}
     ${filaItem('Auto chequeo')}
-    <tr class="r-band"><td colspan="10" class="b c bt bb">Actividades de mantenimiento preventivo</td></tr>
+    <tr class="r-band"><td colspan="10" class="banda2 T B">Actividades de mantenimiento preventivo</td></tr>
     <tr class="r-head">
-      <td colspan="3" class="b c">Actividad</td>
-      <td colspan="2" class="b c">Realizado</td>
-      <td class="b c br">N/A</td>
-      <td colspan="4" class="b c">OBSERVACIONES</td>
+      <td colspan="3">Actividad</td>
+      <td colspan="2" class="c">Realizado</td>
+      <td class="c">N/A</td>
+      <td colspan="4" class="c">OBSERVACIONES</td>
     </tr>
     ${filaActividad('Verificación historial de errores')}
     ${filaActividad('Limpieza general del equipo')}
@@ -258,23 +256,23 @@ function sheetHTML(rec, fecha) {
     ${filaActividad('Verificación estado de filtro de aire exterior')}
     ${filaActividad('Verificación estado de filtro de oxígeno')}
     <tr class="r-ef">
-      <td colspan="2" rowspan="5" class="firma bt">Nombre Empresa Convenio/Nombre y Firma Técnico Ejecutor</td>
-      <td rowspan="4" class="c bt bl" style="font-size:9pt">Estado final del equipo</td>
-      <td colspan="2" rowspan="2" class="c bt bl" style="line-height:1.15">Equipo operativo</td>
-      <td rowspan="2" class="chk bt"></td>
-      <td colspan="4" class="bt bl" style="border-bottom-width:.7px"></td>
+      <td colspan="2" rowspan="5" class="firma T R">Nombre Empresa Convenio/Nombre y Firma Técnico Ejecutor</td>
+      <td rowspan="4" class="c T">Estado final del equipo</td>
+      <td colspan="2" rowspan="2" class="c T L ml">Equipo operativo</td>
+      <td rowspan="2" class="chk T R"></td>
+      <td colspan="4" class="linea T" contenteditable="true"></td>
     </tr>
-    <tr class="r-ef"><td colspan="4" class="linea bl"></td></tr>
+    <tr class="r-ef"><td colspan="4" class="linea" contenteditable="true"></td></tr>
     <tr class="r-ef">
-      <td colspan="2" rowspan="2" class="c bt bl" style="line-height:1.15">Equipo fuera de servicio</td>
-      <td rowspan="2" class="chk bt"></td>
-      <td colspan="4" class="linea bl"></td>
+      <td colspan="2" rowspan="2" class="c T L ml">Equipo fuera de servicio</td>
+      <td rowspan="2" class="chk T R"></td>
+      <td colspan="4" class="linea" contenteditable="true"></td>
     </tr>
-    <tr class="r-ef"><td colspan="4" class="linea bl"></td></tr>
+    <tr class="r-ef"><td colspan="4" class="linea" contenteditable="true"></td></tr>
     <tr class="r-firma">
-      <td class="firma bt bl">Nombre y Firma Técnico  de Subdepartamento Equipamiento Clínico</td>
-      <td colspan="4" class="firma bt bl">Nombre y Firma Jefe Subdepartamento Equipamiento Clínico</td>
-      <td colspan="3" class="firma bt bl">Nombre y Firma VºBº Profesional Servicio Clínico</td>
+      <td class="firma T L">Nombre y Firma Técnico  de Subdepartamento Equipamiento Clínico</td>
+      <td colspan="4" class="firma T L">Nombre y Firma Jefe Subdepartamento Equipamiento Clínico</td>
+      <td colspan="3" class="firma T L">Nombre y Firma VºBº Profesional Servicio Clínico</td>
     </tr>
   </table>
 </section>`;
